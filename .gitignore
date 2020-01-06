@@ -2,3 +2,5 @@
 .vscode
 
 
+studentcode/*.out
+studentcode/*.exe
