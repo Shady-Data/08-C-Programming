@@ -31,7 +31,7 @@ int main(void)
     printf("Value of char 1 is %c \n", singleChar);
     printf("Value of char 1 as an integer is %d \n", (int)singleChar);
     // printf("size of char 2 is %ld \n\n\n", sizeof(singleChar2));
-    printf("Value of %d as a char is %c\n", 33, (char)33);
+    printf("Value of %d as a char is %c\n", 63, (char)63);
 
     return 0;
 }
