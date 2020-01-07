@@ -56,19 +56,26 @@ int main(void)
     // }
     // printf("\n");
 
-    char quote[] = "I don't have a favorite quote at the moment\0";
+    char quote[] = "I don't have a favorite quote at the moment";
+    quote[-1] += '\0';
     int i = 0;
+    char revisedQuote[sizeof(quote)/sizeof(quote[0])];
     while ( quote[i] != '\0')
     {
         if ( quote[i] == ' '){
-            printf("\n");
+            // printf("\n");
+            revisedQuote[i] = '\n';
         }
         else{
-            printf("%c", quote[i]);
+            // printf("%c", quote[i]);
+            revisedQuote[i] = quote[i];
         }
         i++;
     }
-    printf("\n");
+    // check result by printing the revised array
+    // printf("%s", revisedQuote);
+    // printf("\n");
+
 
     return 0;
 }
