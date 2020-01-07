@@ -25,12 +25,13 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(void)
 {
     int numStudents = 14; // number of students in the class 
     int studentsAge [numStudents + 1]; // declare an int array with the number of students + 1
-    int ages [14] = {27, 29, 31, 33, 35, 34, 32, 30, 31, 29, 28, 27, 26, 25}; //array to quick assign ages
+    // int ages [14] = {27, 29, 31, 33, 35, 34, 32, 30, 31, 29, 28, 27, 26, 25}; //array to quick assign ages
 
     // set index 0 of the age array to the instructor's age
     studentsAge[0] = 37;
@@ -38,7 +39,7 @@ int main(void)
     // iterate through the remaining indexes and assign an age for each element
     for (int i=1; i<numStudents+1; i++) // start at index 1 to the number of students + 1
     {
-        studentsAge[i] = ages[i-1];
+        studentsAge[i] = (rand() % (45 - 25)) + 24; // rng in range => (rand() % (upper - lower + 1) + lower)
     }
 
     // print the students ages array
@@ -75,7 +76,6 @@ int main(void)
     // check result by printing the revised array
     // printf("%s", revisedQuote);
     // printf("\n");
-
 
     return 0;
 }
