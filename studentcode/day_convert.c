@@ -20,11 +20,13 @@ int main(void)
     remainDays = startDays;
     // calculate the number of 365-day years
     years = remainDays / 365;
-    remainDays = remainDays - (years * 365);
+    // remainDays = remainDays - (years * 365);
+    remainDays = remainDays % 365;
     // calculate the number of weeks
     weeks = remainDays / 7;
-    remainDays = remainDays - (weeks * 7);
-    //print the results
+    // remainDays = remainDays - (weeks * 7);
+    remainDays = remainDays % 7;
+    // print the results
     printf("%d years, %d weeks, %d days\n", years, weeks, remainDays);
 
     return 0;
