@@ -2,7 +2,7 @@
 * 
 *  name: Robert Chunn
 *  date: 06 Jan 2020
-*  project: Demo Lab 2
+*  project: Perf Lab 3
 *
 *  URL: https://github.com/CyberTrainingUSAF/08-C-Programming/blob/master/03_Arrays_strings/performance_labs/lab3/lab3.md
 *
