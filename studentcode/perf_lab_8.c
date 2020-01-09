@@ -23,6 +23,14 @@
 
 // Demo Lab 4
 
+int clear_input(void)
+{
+    // while loop to grab each char to clear stdin until a newline '\n'
+    while ((getchar()) != '\n');
+
+    return 0;
+}
+
 int format_input_str(void)
 {
     // declare and initialize an array to store user input
@@ -31,8 +39,10 @@ int format_input_str(void)
     printf("Enter a string: ");
     // grab the input from the user
     scanf("%20[^A-Z\n]s", userInput); // [^A-Z\n] will stop capture at the first capital letter or newline
+    // clear stdin in to prevent input carryover
+    clear_input();
     // print the results for debugging
-    printf("%s was entered.\n", userInput);
+    printf("\"%s\" was entered.\n", userInput);
 
     return 0;
 }
@@ -46,7 +56,9 @@ int format_input_nums(void)
     //Prompt user for input
     printf("Enter a date in mm-dd-yyyy format: ");
     // get the user's input with scanf
-    scanf(" %d-%d-%d", &numArray[0], &numArray[1], &numArray[2]);
+    scanf("%d-%d-%d", &numArray[0], &numArray[1], &numArray[2]);
+    // clear stdin in to prevent input carryover
+    clear_input();
     // Display the reformated user input
     printf("%02d/%02d/%04d\n", numArray[0], numArray[1], numArray[2]);
 
@@ -64,8 +76,9 @@ int get_full_name(void)
 
     // Prompt user for name
     printf("Enter your full name with a tab between each name (i.e. First   Middle  Last):\n");
-    scanf(" %19s\t%19s\t%19s", nameFirst, nameMiddle, nameLast);
-
+    scanf("%19s\t%19s\t%19s", nameFirst, nameMiddle, nameLast);
+    // clear stdin in to prevent input carryover
+    clear_input();
     // Display the entered name
     printf("You Entered: \n");
     printf("\t%s\n\t%s\n\t%s\n", nameFirst, nameMiddle, nameLast);
@@ -79,7 +92,9 @@ int multiplier(void)
     int multi[2] = {0};
     // Prompt user for input
     printf("Enter two integers, separated by a *, to be multiplied… (i.e. x*y): ");
-    scanf(" %d*%d", &multi[0], &multi[1]);
+    scanf("%d*%d", &multi[0], &multi[1]);
+    // clear stdin in to prevent input carryover
+    clear_input();
     // Display what the user entered and the product
     printf("The result of %d multiplied by %d is %d.\n", multi[0], multi[1], multi[0] * multi[1]);
 
