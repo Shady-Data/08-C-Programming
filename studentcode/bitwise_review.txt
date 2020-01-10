@@ -1,0 +1,24 @@
+
+Review 1
+
+System 	        Original Value 	Decimal Value
+Hexadecimal 	0xBAD 	        16^2*11 + 160 + 13 = 2989
+Hexadecimal 	0xBEEF 	        48879
+Octal 	        455 	        301
+Octal 	        347 	        231
+Binary 	        0010 1111 	    47
+Binary 	        0100 0110 	    70
+
+Review 2
+Hexadecimal 	Binary Conversion
+0xDEADC0DE 	    1101 1110 1010 1101 1100 0000 1101 1110
+0xE011CFD0 	    1110 0000 0001 0001 1100 1111 1101 0000
+0xFACEB00C 	    1111 1010 1100 1110 1011 0000 0000 1100
+0xFEE1DEAD 	    1111 1110 1110 0001 1101 1110 1010 1101
+
+Review 3
+Binary 	                                    Hexadecimal
+1101 1110 1010 1101 1101 0000 0000 1101 	0xDEADD00D
+1100 0000 0000 0000 0001 0000 1111 1111 	0xC00010FF
+1011 0001 0000 0101 1111 0000 0000 1101 	0xB105f00D
+1101 1110 1010 1101 0001 0000 1100 1100 	0xDEAD10CC
