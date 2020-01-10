@@ -1,6 +1,6 @@
 /*
 * This program prints the various type limits stored in the limits.h header file
-* Code copied from https://www.tutorialspoint.com/c_standard_library/limits_h.htm
+* Code copied/modified from https://www.tutorialspoint.com/c_standard_library/limits_h.htm
 */
 #include <stdio.h>
 #include <limits.h>
@@ -18,6 +18,7 @@ int main() {
 
    printf("The minimum value of INT = %d\n", INT_MIN);
    printf("The maximum value of INT = %d\n", INT_MAX);
+   printf("The maximum value of UINT = %u\n", UINT_MAX);
 
    printf("The minimum value of CHAR = %d\n", CHAR_MIN);
    printf("The maximum value of CHAR = %d\n", CHAR_MAX);
