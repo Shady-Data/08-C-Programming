@@ -28,8 +28,8 @@ int main(void)
     fscanf(stdin, "%u", &shiftRight);
 
     // Display the original number and the result of the bit shifting
-    fprintf(stdout, "\n%u after shifting the bits 3 to the left is %u\n", shiftLeft, shiftLeft << 3);
-    fprintf(stdout, "\n%u after shifting the bits 5 to the right is %u\n", shiftRight, shiftRight >> 5);
+    fprintf(stdout, "\n\t%u after shifting 3 bits to the left is %u\n", shiftLeft, shiftLeft << 3);
+    fprintf(stdout, "\t%u after shifting 5 bits to the right is %u\n\n", shiftRight, shiftRight >> 5);
 
     return 0;
 }
