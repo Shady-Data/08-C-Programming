@@ -59,6 +59,7 @@ int main(void)
         {
             // indicate that the number is negative
             fprintf(stdout, "The number is already negative.\n");
+            print_binary(user_input);
         }
         else
         {
