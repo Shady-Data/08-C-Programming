@@ -24,9 +24,9 @@ int main(void)
         }
         else if (num1 > num2)
         {
-            num1 ^= num3;
-            num3 ^= num1;
-            num1 ^= num3;
+            num1 ^= num3; // set num1 to be the XOR of num1 and num3
+            num3 ^= num1; // set num3 to be the the XOR of num3 and the new num1 (num3 becomes what num1 was originally)
+            num1 ^= num3; // set num1 to be the XOR of num1 and num3 again (num1 becomes the original value of num3)
         }
         else
         {
