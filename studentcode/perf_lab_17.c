@@ -28,21 +28,14 @@ int main(void)
     {
         // grab a single character from stdin 
         myChar = getc(stdin);
-        // check if the character is in the ASCII printable range 33-126 inclusive
-        if ((int)myChar >= 33 && (int)myChar <= 126)
+        // check if the character is within the uppercase range (65-90) or the lowercase range (97-122)
+        if (((int)myChar >= 65 && (int)myChar <= 90) || ((int)myChar >=97 && (int)myChar <= 122))
         {
-            // if the character is lowercase a-z (97-122)
-            if ((int)myChar >= 97 && (int)myChar <= 122)
-            {
-                // use the toupper() in ctype.h to convert the lowercase letter to an uppercase letter
-                myChar = toupper(myChar);
-            }
-            // if the new char is within the range of upper case ASCII 65-90 inclusive
-            if ((int)myChar >= 65 && (int)myChar <= 90)
-            {
-                // increment the appropriate counter in the char counter array
-                myCharCounter[(int)myChar - 65] += 1;
-            }
+            // use the toupper() in ctype.h to convert a lowercase letter to an uppercase letter
+            myChar = toupper(myChar);
+            
+            // increment the appropriate counter in the char counter array
+            myCharCounter[(int)myChar - 65] += 1;
         }
     // do all this while a newline \n is read, or until the int array is full
     } while (myChar != '\n');
