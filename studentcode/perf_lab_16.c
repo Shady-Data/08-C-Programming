@@ -22,18 +22,11 @@ int main(void)
     fprintf(stdout, "\n\n");
 
     // declare and initialize an int variable counter for reading individual chars from the phrases char array and a newline counter
-    int ind = 0, newline = 0;
+    int ind = 0;
     // while the char at index position is not a NUL '\0' char
-    while (phrases[ind] != '\0')
+    while (phrases[ind] != '\0' && phrases[ind] != '\n')
     {
-        if (newline < 1)
-        {
-            putchar(phrases[ind]); // print the current char
-        }
-        if (phrases[ind] == '\n')
-        {
-            newline++;
-        }
+        putchar(phrases[ind]); // print the current char
         ind++; // increment the index
     }
     fprintf(stdout, "\n");
