@@ -1,4 +1,9 @@
 /*
+* 
+*  name: Robert Chunn
+*  date: 16 Jan 2020
+*  project: Performance Lab 21_2
+* 
 * 5.39--> (recursive greatest common divisor) 
 * 	The greatest common divisor of integers (x) and (y) is the largest integer that evenly divides both (x) and (y).
 *     Write a function (gcd) that returns the greatest common divisor of (x) and (y).
