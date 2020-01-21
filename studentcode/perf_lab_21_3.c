@@ -16,20 +16,20 @@
 int main(void)
 {
     // declare and initialze a static integer variable to 1
-    static int someVar = 1; // a static variable is used to prevent the variable from being redeclared and assigned a value of 1 for the recursive main() calls 
+    static int counter = 1; // a static variable is used to prevent the variable from being redeclared and assigned a value of 1 for the recursive main() calls 
 
     // establish a base case to prevent infinite recursion
-    if (someVar == 20) { // base case: if the variable is 20 
-        fprintf(stdout, "main() called %d times\n", someVar); // print the variable value
+    if (counter == 20) { // base case: if the variable is 20 
+        fprintf(stdout, "main() called %d times\n", counter); // print the variable value
         fprintf(stdout, "\tProgram Terminating.\n"); // print a terminatig statement if desired
         return 0; // return 0 or the variable as desired
     }
-    else if (someVar == 1){ // unnecessary case for slight modification of printed statement
-        fprintf(stdout, "\nmain() called %d time\n", someVar++); // print and increment the value of the variable
+    else if (counter == 1){ // unnecessary case for slight modification of printed statement
+        fprintf(stdout, "\nmain() called %d time\n", counter++); // print and increment the value of the variable
         return main(); // return the main() for recursion until the sentinel value (set in the base case) is met.
     }
     else { // recursive case
-        fprintf(stdout, "main() called %d times\n", someVar++); // print and increment the value of the variable
+        fprintf(stdout, "main() called %d times\n", counter++); // print and increment the value of the variable
         return main(); // return the main() for recursion until the sentinel value (set in the base case) is met.
     }
 }
