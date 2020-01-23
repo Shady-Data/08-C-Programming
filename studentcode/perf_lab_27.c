@@ -9,10 +9,11 @@
 #include <stdio.h>
 #include <string.h>
 
+#define ANSI_FLASH         "\x1b[5m"
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
-#define RED_ERROR ANSI_COLOR_RED "ERROR! " ANSI_COLOR_RESET
+#define RED_ERROR ANSI_COLOR_RED ANSI_FLASH "\tERROR! " ANSI_COLOR_RESET
 
 #define ERROR_NULL_POINTER "NULL Pointer/Empty String found!"
 #define ERROR_ABUNDANT_POINTER "More than 1 occurence of the delimiter character found!"
