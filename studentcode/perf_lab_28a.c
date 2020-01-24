@@ -2,7 +2,7 @@
 * 
 *  name: Robert Chunn
 *  date: 24 Jan 2020
-*  project: Performance Lab 28c Copy Char-by-Char
+*  project: Performance Lab 28a Mighty Morphin Power Rangers
 * 
 */
 
@@ -23,7 +23,7 @@ int main(void)
         fclose(file_ptr); // close the open file handler
     }
     else{
-        puts("File falied to open. Terminating program!"); // print an Error if fopen returned an error
+        puts("File failed to open. Terminating program!"); // print an Error if fopen returned an error
     }
 
     return 0;
