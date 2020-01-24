@@ -144,9 +144,40 @@ int bubble_sort(int * arrayOfInts, int numOfElements, int(*compare_function)(int
 
 int main(void)
 {
-	/********************/
-	/* Place code here! */
-	/********************/
+	// declare and initialize array of integers to test
+    int intArray [8][2] = {
+        {9, 0},
+        {8, 68},
+        {-24, 318},
+        {-318, -688},
+        {6, 9},
+        {2048, -1024},
+        {256, -512},
+        {-1024, 256}
+    };
+    int tempValue = 0;
+    int (*compFunc_ptr) (int x, int y);
+
+    for (int row = 0; row < sizeof(intArray)/sizeof(intArray[0]); row++){
+        if (row <= 1){
+            compFunc_ptr = &low_to_high_compare;
+            tempValue = bubble_sort(*intArray, sizeof(intArray[0])/sizeof(intArray[0][0]), compFunc_ptr);
+        }
+        else if (row > 1 && row <= 3){
+            compFunc_ptr = &high_to_low_compare;
+            tempValue = bubble_sort(*intArray, sizeof(intArray[0])/sizeof(intArray[0][0]), compFunc_ptr);
+        }
+        else if (row > 3 && row <= 5){
+            compFunc_ptr = &absolute_low_to_high_compare;
+            tempValue = bubble_sort(*intArray, sizeof(intArray[0])/sizeof(intArray[0][0]), compFunc_ptr);
+        }
+        else if (row > 5 && row <= 7){
+            compFunc_ptr = &absolute_high_to_low_compare;
+            tempValue = bubble_sort(*intArray, sizeof(intArray[0])/sizeof(intArray[0][0]), compFunc_ptr);
+        }
+        printf("test %d: %d was returned\n",row + 1, tempValue);
+    }
+    puts("\t\tExpected:\n\ttest 1 : 1\n\ttest 2 : 0\n\ttest 3 : 1\n\ttest 4 : 0\n\ttest 5 : 1\n\ttest 6 : 0\n\ttest 7 : 1\n\ttest 8 : 0\n\t");
 
 	return 0;
 }
