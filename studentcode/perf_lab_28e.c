@@ -7,81 +7,56 @@
 */
 
 #include <stdio.h>
+#include <string.h>
 #include <ctype.h>
-
-#define BUFF 256
-
-void get_name(char * names) // get a first, middle, and last name from stdin
-{
-    fscanf(stdin, "%255s", names);
-}
-
-void write_outfile(char * filename, char * students, char * usernames) // write the arrays to the outputfile
-{
-    FILE * outfile = fopen(filename, "w");
-
-    if (outfile != NULL){
-        for (int i = 0; i < sizeof(students)/sizeof(students[0]); i++){
-            fputs(students[i], outfile);
-            fputs(" has a username of " , outfile);
-            fputs(usernames[i], outfile);
-            fputs("\n", outfile);
-        }
-    }
-    else {
-        printf("Failed to write %s!\n", filename);
-    }
-}
-
-int count_splits(const char * string)
-{
-    int count = 0;
-    char * temp_ptr = string;
-    while (temp_ptr != '\n' && temp_ptr != '\0')
-    {
-        temp_ptr++;
-        if (temp_ptr == ' ' || temp_ptr == '-' || temp_ptr == '_'){
-            count++;
-        }
-    }
-    return count;
-}
+#include "myhead.h"
 
 int main(void)
 {
-    // declare and zeroize a char array to store user input
-    char userInput[BUFF] = {0};
-    // declare an input variable to store the number of students to enter
-    int students = 0;
-    // declare an array to store the students info in for writing to a file
-    char allStudents[64][BUFF];
-    char userNames[64][BUFF];
-    int nameSplits = 0, stud = 0, ch = 0;
-    char * temp_ptr;
-    // Prompt the user for the number of students to be entered
-    puts("Enter the First Middle and Last name for each student:");
-    while (students > 0){
-        get_name(userInput);
-        allStudents[stud][sizeof(userInput)] = userInput;
-        temp_ptr = userInput;
-        nameSplits = count_splits(userInput);
-        while (nameSplits > 1){
-            userNames[stud][ch] = tolower(*temp_ptr);
-            ch++;
-            while (*temp_ptr != '-' || *temp_ptr != '_' || *temp_ptr != ' '){
-                temp_ptr++;
+    // declare and zeroize a variable to store user input for the number of entries
+    int numStudents = 0;
+    // Get the number of students
+    printf("How many students?\n");
+    scanf("%d", &numStudents); 
+    clear_input(); // clear stdin to prevent errors
+    // Open the file in append mode
+    FILE * roster = fopen("roster.dat", "a");
+    // Declare and zeroize a char array to store a string from user input
+    char name[256] = {0};
+    // While loop to get the right number of names
+    printf("Enter the student's full name\n");
+    while (numStudents > 0)
+    {
+        // Declare/initialize output string
+        char username[256] = {0};
+        int entry = 1;
+        // Get user input
+        printf("Entry %d: ", entry++);
+        // [^\n] does not grab the trailing newline
+        scanf("%[^\n]255s", name);
+        clear_input(); // clear stdin to prevent errors
+        // Convert the input to lower case
+        for (int i = 0; name[i] != 0; i++) // iterate 
+        {
+            name[i] = tolower(name[i]);
+        }
+        // For loop, split the string on spaces, continue grabbing the next segment until none are left
+        char * tok_ptr = strtok(name, " "); // declare and initialize a char pointer to be the strtok() result of the name variable with a ' ' token delimiter
+        for (int i = 0; tok_ptr != NULL; tok_ptr = strtok(NULL, " "), i++) // loops until tok_ptr variable != NULL and reassigns tok_ptr to the next <space> seperated segment and increments i on each loop iteration
+        {
+            while (strlen(username) > i) // while the return of strlen() of username is greater than i continually iterate the following code
+            {
+                username[strlen(username) - 1] = 0; // set the char in username at the last position to be the integer 0
             }
-            temp_ptr++;
-            nameSplits--;
+            strcat(username, tok_ptr); // concatenate the tok_ptr variable to username
         }
-        while (*temp_ptr != '\n' || *temp_ptr != '\0' || *temp_ptr != NULL){
-            userNames[stud][ch] = tolower(*temp_ptr);
-            ch++; temp_ptr++;
-        }
-        stud++;
-        students--;
-    }   
-    write_outfile("roster.txt", allStudents, userNames);
-
+        // Put the output string and a newline to the txt file
+        fputs(username, roster);
+        fputs("\n", roster);
+        // Decrement the loop
+        numStudents--;
+    }
+    // Close the file and end the program
+    fclose(roster);
     return 0;
 }
