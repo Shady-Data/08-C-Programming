@@ -62,8 +62,8 @@ Focus the discussion to topics such as scope.
 ### Pass by Reference
 
 ```
-/////// PASS BY VALUE EXAMPLE ///////   //// PASS BY VALUE OUTPUT ////
-void swap_em(int a, int b)
+/////// PASS BY REFERENCE EXAMPLE ///////   //// PASS BY REFERENCE OUTPUT ////
+void swap_em(int *a, int *b)
 {
     int temp = *a;                           x = 9
     *a = *b;                                 y = 0

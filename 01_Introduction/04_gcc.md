@@ -47,7 +47,7 @@ Alternatively, you could look for an online man pages, e.g., http://linux.die.ne
 Say you have a file hello.c as follows:
 
 ```c
-#include 
+#include <stdio.h>
 
 void main ()
 {

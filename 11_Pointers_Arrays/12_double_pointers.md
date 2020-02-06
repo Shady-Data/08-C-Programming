@@ -45,7 +45,7 @@ int main() {
 
 * First we set **var = 100**
 * Let's assume **var's memory address is 0x20000000**
-* Then we set ptr to **0x20000000 **\(aks var's address\)
+* Then we set ptr to **0x20000000** \(aks var's address\)
 * \*ptr is now equal to 100
 * Let's assume **&ptr is 0x300000000**
 * We then set **dblPtr = &ptr \(0x300000000\)**
