@@ -139,7 +139,62 @@ corresponding numbers to be entered and will store the entries in an array of st
 The program should allow a second name to be entered and output 
 all the numbers corresponding to the name, and optionally output all the names with their corresponding numbers.
 */
+#include <stdlib.h>
 
+struct Contact {
+    char first_name[32];
+    char second_name[32];
+    char phone[16];
+};
+
+// int parse_phone(char * phonenumber){
+//     char temp[16] = {0};
+//     strcpy(temp, phonenumber);
+//     char * temp_ptr = &temp;
+//     while (temp_ptr != NULL){
+//         if (strlen(phonenumber) < 8){
+
+//         }
+//     }
+// }
+
+int example4(void)
+{
+    struct Contact * contactList_ptr = malloc(100 * sizeof(struct Contact));
+    struct Contact * work_ptr = contactList_ptr;
+
+    char * firstNames[10] = {"James", "John", "Jim", "Joe", "Jason", "Dave", "Derrick", "Bob", "Tom", "Jack"};
+    char * secondNames[4] = {"some_Company", "my_family", "1337_H@x0r", "SME"};
+    char * phoneNumbers[10] = {"012-345-6789", "1234567890", "2345678901", "3456789012", "4567890123", "5678901234", "6789012345", "7890123456", "8901234567", "9012345678"};
+
+    
+    for (int i = 0; i < 10; i++){
+        strcpy(work_ptr->first_name, firstNames[i]);
+        if (i < 3){
+            strcpy(work_ptr->second_name, secondNames[0]);
+        }
+        else if (i < 5){
+            strcpy(work_ptr->second_name, secondNames[1]);
+        }
+        else if (i < 6){
+            strcpy(work_ptr->second_name, secondNames[2]);
+        }
+        else if (i < 7){
+            strcpy(work_ptr->second_name, secondNames[3]);
+        }
+        strcpy(work_ptr->phone, phoneNumbers[i]);
+        work_ptr++;
+    }
+
+    // free(work_ptr);
+
+    for (work_ptr = contactList_ptr; *work_ptr->first_name != '\0'; work_ptr++){
+        printf("Name: %s\tSecond: %s\tPhone: %s\n", work_ptr->first_name, work_ptr->second_name, work_ptr->phone);
+    }
+
+    free(contactList_ptr);
+    return 0;
+}
 
 /*
 5. Write a program to compute the weekly pay for 10 machine shop workers with a 6 character ID, a 20 character name,
@@ -230,7 +285,7 @@ int main(void)
     // example1();
     // example2();
     // example3();
-    // example4();
+    example4();
     // example5();
     
     return(0);

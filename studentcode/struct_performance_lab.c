@@ -75,7 +75,7 @@ struct Tsunami{
 
 float meters2feet(float meters)
 {
-    return meters * 3.281;
+    return meters * 3.28084;
 }
 
 float f_average(float * array){
