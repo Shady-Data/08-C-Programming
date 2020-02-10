@@ -143,21 +143,28 @@ int lab_3(void)
     // depending on the scale member
     switch (curr_temp.scale)
     {
-        // if the scale 
+    // if the character stored in scale is 'F'
     case 'F':
+        // Display the result of the fahrenheit to kelvin function
         printf("\nThe current temperature in Kelvin is: %.2f\n", fahrenheit2kelvin(curr_temp.degrees));
-        break;
+        break; // break out of the switch case code block
+    // if the character stored in scale is 'C'
     case 'C':
+        // Display the result of the celcius to kelvin function
         printf("\nThe current temperature in Kelvin is: %.2f\n", celsius2kelvin(curr_temp.degrees));
-        break;
+        break; // break out of the switch case code block
+    // if the character stored in scale is 'K'
     case 'K':
+        // display the already stored degrees back since it should already be in the kelvin scale
         printf("\nThe current temperature was already in Kelvin is: %.2f\n", curr_temp.degrees);
-        break;
+        break; // break out of the switch case code block
+    // if any other character was stored in scale
     default:
+        // print an unrecognized scale message
         printf("\nThe entered scale was unable to be recognized.\n");
-        break;
+        break; // break out of the switch case code block
     }
-
+    
     return 0;
 }
 
