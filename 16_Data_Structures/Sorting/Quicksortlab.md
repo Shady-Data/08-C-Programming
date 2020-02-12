@@ -94,7 +94,7 @@ void medianLeft (int* sortData, int  left,
 /*
 Results:
 Unsorted array:  89 72  3 15 21 57 61 44 19 98  5 77 39 59 61
-Sorted array:     2  3  5 15 19 21 39 44 57 59 61 61 72 77 89
+Sorted array:     3  5 15 19 21 39 44 57 59 61 61 72 77 89 98
 Total exchanges: 52
 */
 ```
