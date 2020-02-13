@@ -54,6 +54,49 @@ void addAtEnd(struct Node** head_ref, int new_data)
 } 
 
 ```
+# Delete from the front
+```c
+void RemoveFirstNode()
+{
+    struct node * NodeToDel;
+    if(stnode == NULL)
+    {
+        printf(" Delete is not possible. No data in the list.\n");
+    }
+    else
+    {
+        NodeToDel = stnode;
+        stnode = stnode->nextptr;   // move the next address of starting node to 2 node
+        stnode->preptr = NULL;      // set previous address of staring node is NULL
+        free(NodeToDel);            // delete the first node from memory
+    }
+}
+
+```
+# Delete from the end
+```c
+void DeleteLastNode()
+{
+    struct node * NodeToDel;
+ 
+    if(ennode == NULL)
+    {
+        printf(" Delete is not possible. No data in the list.\n");
+    }
+    else
+    {
+        NodeToDel = ennode;
+        ennode = ennode->preptr;    // move the previous address of the last node to 2nd last node
+        ennode->nextptr = NULL;     // set the next address of last node to NULL
+        free(NodeToDel);            // delete the last node
+    }
+}
+
+
+```
+# Delete from 
+
+
 # VARIOUS EXAMPLES OF  DOUBLY LINKED LISTS
 # Doubly Linked List Example 1
 ```c
