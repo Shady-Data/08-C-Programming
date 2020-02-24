@@ -272,7 +272,6 @@ get at least 11 names.
 
 typedef struct NameNode{
    char data[MAXLENGTH];
-   int sortval;
    struct NameNode * next;
    struct NameNode * prev;
 } name;
@@ -281,9 +280,11 @@ void name_push(name ** head_ptr, name ** tail_ptr, char * data)
 {
    name * newnode = malloc(sizeof(name));
    strncpy(newnode->data, data, MAXLENGTH);
-   newnode->sortval = *data;
    newnode->prev = NULL;
    newnode->next = (*head_ptr);
+   if ((*head_ptr) != NULL){
+      (*head_ptr)->prev = newnode;
+   }
    (*head_ptr) = newnode;
    if (tail_ptr == NULL){
       (*tail_ptr) = newnode->next;
@@ -302,54 +303,57 @@ void print_names_list(name ** head_ptr)
 
 void sort_names_list(name ** head_ptr, name ** tail_ptr)
 {
-   name * sorted_ptr = (*head_ptr);
-   name * curr_ptr = (*head_ptr);
-   name * search_ptr = (*head_ptr);
-   name * unsorted_ptr = NULL;
-   name * prevnode_ptr = NULL;
-   name * nextnode_ptr = NULL;
-   search_ptr = search_ptr->next;
+   name * sorted_ptr = (*head_ptr); // declare and intialize a pointer for the sorted list portion
+   name * curr_ptr = (*head_ptr); // declare and intialize a pointer for the current node being sorted
+   name * search_ptr = (*head_ptr); // declare and initialize a pointer to search through the linked list
+   name * prevnode_ptr = NULL; // declare a temp variable to store a pointer to the current node's pointer to it's previous node
+   name * nextnode_ptr = NULL; // declare a temp variable to store a pointer to the current node's pointer to it's next node
 
-   while (curr_ptr->next != NULL){
-      if (sorted_ptr->sortval < curr_ptr->sortval){
-         sorted_ptr = curr_ptr;
-      }
-      curr_ptr = curr_ptr->next;
-   }
+   while (curr_ptr->next != NULL){ // starting from the head to the last entry in the list (node's next pointer = NULL)
+      if (strncmp(sorted_ptr->data, curr_ptr->data, MAXLENGTH) > 0 ){ // compare the string based data in the nodes
+         sorted_ptr = curr_ptr; // if the data in the current node comparison is greater than 0, set the sorted pointer to point to that node
+      } // end if codeblock
+      curr_ptr = curr_ptr->next; // set the current node pointer to the next node
+   } // end while loop and the lowest comparison value is in the sorted pointer (ascending sort "A -> Z")
    
-   sorted_ptr->next = (*head_ptr);
-   sorted_ptr->prev = NULL;
-   (*head_ptr)->prev = sorted_ptr;
-   (*head_ptr) = sorted_ptr;
+   // isolate the the sorted node
+   prevnode_ptr = sorted_ptr->prev; // set the sorted node's prev pointer to the prevnode pointer
+   nextnode_ptr = sorted_ptr->next; // set the sorted node's next pointer to the nextnode pointer
+   prevnode_ptr->next = nextnode_ptr; // set the prevnode's next pointer to the to the nextnode pointer
+   nextnode_ptr->prev = prevnode_ptr; // set the nextnode's prev pointer to the to the prevnode pointer
 
-   nextnode_ptr = curr_ptr->next;
-   prevnode_ptr = curr_ptr->prev;
+   // insert the isolated sorted node to the head of the list
+   sorted_ptr->next = (*head_ptr); // set the sorted nodes next pointer to the head pointer
+   sorted_ptr->prev = NULL; // set the sorted nodes prev pointer to NULL
+   (*head_ptr) = sorted_ptr; // set the head pointer to the start of the sorted list
 
-   while (sorted_ptr->next != NULL){
-      curr_ptr = sorted_ptr->next;
-      search_ptr = curr_ptr->next;
-      while (search_ptr->next != NULL){
-         if (search_ptr->sortval < curr_ptr->sortval){
-            curr_ptr = search_ptr;
-         }
-         else if (search_ptr->sortval == curr_ptr->sortval){
-            if (strncmp(search_ptr->data, curr_ptr->data, MAXLENGTH) < 0){
-               curr_ptr = search_ptr;
-            }
-         }
-         search_ptr = search_ptr->next;
-      }
-      unsorted_ptr = sorted_ptr->next;
-      nextnode_ptr = curr_ptr->next;
-      prevnode_ptr = curr_ptr->prev;
-      prevnode_ptr->next = nextnode_ptr;
-      nextnode_ptr->prev = prevnode_ptr;
-      sorted_ptr->next = curr_ptr;
-      curr_ptr->prev = sorted_ptr;
-      sorted_ptr = curr_ptr;
-      sorted_ptr->next = unsorted_ptr;
-   }
-   (*tail_ptr) = sorted_ptr;
+   while (sorted_ptr->next->next != NULL){ // while the sorted ptr is not the next to last item in the list
+      curr_ptr = sorted_ptr->next; // set the current pointer to the sorted pointer's next value (start of the unsorted list)
+      search_ptr = curr_ptr->next; // set the search pointer to the next node of the current pointer (second node of the unsorted list)
+      while (search_ptr->next != NULL){ // while the search pointer is not the last node in the list
+         if (strncmp(curr_ptr->data, search_ptr->data, MAXLENGTH) > 0 ){ // compare the string data in the nodes
+            curr_ptr = search_ptr; // if the return of the comparison is greater than 0 set the current node's pointer to the search node's pointer 
+         } // end if codeblock
+         search_ptr = search_ptr->next; // set the search pointer to the next node pointer
+      } // end inner while loop and the lowest comparison value is in the current pointer (ascending sort "A -> Z")
+      if (sorted_ptr->next == curr_ptr){ // if the sorted node's next pointer is still the current node pointer
+         sorted_ptr = curr_ptr; // current node is already in position, set the sorted pointer to the next node
+      } // end if codeblock
+      else { // otherwise isolate the current node
+         nextnode_ptr = curr_ptr->next; // set the current node's next pointer to the nextnode pointer
+         prevnode_ptr = curr_ptr->prev; // set the current node's prev pointer to the prevnode pointer
+         prevnode_ptr->next = nextnode_ptr; // set the prevnode's next pointer to the to the nextnode pointer
+         nextnode_ptr->prev = prevnode_ptr; // set the nextnode's prev pointer to the to the prevnode pointer
+
+         // insert the current node next to the sorted node
+         curr_ptr->next = sorted_ptr->next; // set the current node's next pointer to the sorted node's next pointer (start of the unsorted list)
+         sorted_ptr->next = curr_ptr; // set the sorted node's next pointer to the current node
+         curr_ptr->prev = sorted_ptr; // set the current node's previous pointer to point to the sorted node
+
+         sorted_ptr = curr_ptr; // set the sorted pointer to the current node's pointer
+      } // end else codeblock
+   } // end outer while loop codeblock
+   (*tail_ptr) = sorted_ptr; // set the last sorted node pointer after the loop completion to be the tail pointer
 }
 
 int save_list(name ** head_ptr, char * filepath)
